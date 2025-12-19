@@ -1,0 +1,4 @@
+DUPONT; Jean; 0601020304; j.dupont@mail.com; True
+ALVES; Maria; 0708091011; m.alves@provider.fr; False
+ZOLA; Emile; 0102030405; e.zola@ecrivain.com; False
+BERNARD; Lucas; 0622334455; l.bernard@travail.org; True
