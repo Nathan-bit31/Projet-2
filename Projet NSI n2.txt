@@ -1,0 +1,86 @@
+def charger_contacts():
+    repertoire = []
+
+    try:
+        fichier = open("contacts.txt", "r")
+
+        for ligne in fichier:
+            ligne = ligne.strip()          
+            infos = ligne.split(";")       
+
+            contact = {
+                "nom": infos[0],
+                "prenom": infos[1],
+                "tel": infos[2],
+                "email": infos[3],
+                "favori": infos[4] == "True"
+            }
+
+            repertoire.append(contact)
+
+        fichier.close()
+
+        
+        repertoire.sort(key=lambda c: c["nom"])
+
+    except FileNotFoundError:
+        repertoire = []
+
+    return repertoire
+
+
+
+
+def ajouter_contact(repertoire):
+    nom = input("Nom : ").upper()
+    prenom = input("Prénom : ")
+    tel = input("Téléphone : ")
+    email = input("Email : ")
+    fav = input("Favori (o/n) : ")
+
+    contact = {
+        "nom": nom,
+        "prenom": prenom,
+        "tel": tel,
+        "email": email,
+        "favori": fav == "o"
+    }
+
+    repertoire.append(contact)
+    repertoire.sort(key=lambda c: c["nom"])
+
+    print("Contact ajouté.")
+
+
+def afficher_repertoire(repertoire):
+    for contact in repertoire:
+        print(contact["nom"], contact["prenom"],
+              "-", contact["tel"],
+              "-", contact["email"])
+
+
+def rechercher_contact(repertoire):
+    debut = input("Début du nom : ").upper()
+
+    for contact in repertoire:
+        if contact["nom"].startswith(debut):
+            print(contact["nom"], contact["prenom"],
+                  "-", contact["tel"])
+
+def afficher_favoris(repertoire):
+    for contact in repertoire:
+        if contact["favori"]:
+            print(contact["nom"], contact["prenom"],
+                  "-", contact["tel"])
+
+
+def supprimer_contact(repertoire):
+    nom = input("Nom du contact à supprimer : ").upper()
+
+    for contact in repertoire:
+        if contact["nom"] == nom:
+            repertoire.remove(contact)
+            print("Contact supprimé.")
+            return
+
+    print("Contact non trouvé.")
