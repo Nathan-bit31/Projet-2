@@ -1,7 +1,6 @@
 """
 Projet NSI – Étape 2
 Modélisation d'un carnet de contacts
-Niveau Première
 """
 
 # Création du répertoire (liste de contacts)
@@ -62,3 +61,4 @@ for contact in repertoire:
         contact["email"],
         contact["favori"]
     )
+
